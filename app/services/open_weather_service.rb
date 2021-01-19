@@ -1,14 +1,15 @@
 class OpenWeatherService
 
 
-  def self.current_weather(state)
-    response = conn.get("/data/2.5/weather?q=#{state}")
+  def self.current_weather(lat, lon)
+    binding.pry
+    response = conn.get("/data/2.5/weather?lat=#{lat}&lon=#{lon}")
     json = JSON.parse(response.body, symbolize_names: true)
   end
 
   def self.ultraviolet(lat, lon)
     response = conn.get("/data/2.5/uvi?lat=#{lat}&lon=#{lon}")
-    json = JSON.parse(resposnse.body, symbolize_names: true)
+    json = JSON.parse(response.body, symbolize_names: true)
   end
 
   def self.conn
