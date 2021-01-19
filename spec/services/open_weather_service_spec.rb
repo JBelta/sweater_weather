@@ -35,8 +35,13 @@ describe OpenWeatherService do
       uvi = OpenWeatherService.ultraviolet(city.lat, city.lng)
 
       expect(uvi[:value]).to be_a(Float)
+    end
+  end
 
-      OpenWeatherFacade.weather_now(city.lat, city.lng)
+  context '#hourly_weather' do
+    it 'can return the hourly weather with cities lattitude and longitude' do
+      city = GeocodingFacade.city_location('Denver', 'CO')
+
     end
   end
 end
