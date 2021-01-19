@@ -38,9 +38,12 @@ describe OpenWeatherService do
     end
   end
 
-  context '#hourly_weather' do
+  context '#daily_hourly' do
     it 'can return the hourly weather with cities lattitude and longitude' do
       city = GeocodingFacade.city_location('Denver', 'CO')
+      denver = OpenWeatherService.hourly_weather(city.lat, city.lng)
+
+      expect(denver).to be_a(Hash)
 
     end
   end
