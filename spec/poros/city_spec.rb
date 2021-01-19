@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe CityCurrentWeather do
+describe City do
   it 'exist' do
     attr = {
       results: [{
