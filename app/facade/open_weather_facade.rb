@@ -7,6 +7,6 @@ class OpenWeatherFacade
 
     data = state_info.merge(uv_info)
 
-    @current_weather = CityCurrentWeather.new(data)
+    CityCurrentWeather.new(data)
   end
 end
