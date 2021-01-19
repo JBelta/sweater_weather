@@ -16,6 +16,8 @@ describe OpenWeatherService do
         expect(denver[:visibility]).to be_an(Integer)
         expect(denver[:dt]).to be_an(Integer)
         expect(denver[:weather][0][:description]).to be_a(String)
+        expect(denver[:coord][:lat]).to be_a(Float)
+        expect(denver[:coord][:lon]).to be_a(Float)
       end
     end
   end
