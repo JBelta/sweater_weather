@@ -9,17 +9,14 @@ describe OpenWeatherService do
         expect(denver).to be_a(Hash)
         expect(denver[:dt]).to be_an(Integer)
         expect(denver[:sys][:sunrise]).to be_an(Integer)
-        expect(denver[:sys][:sundown]).to be_an(Integer)
-        expect(denver[:main][:temp]).to be_an(Integer)
-        expect(denver[:main][:feels_like]).to be_an(Integer)
+        expect(denver[:sys][:sunset]).to be_an(Integer)
+        expect(denver[:main][:temp]).to be_an(Float)
+        expect(denver[:main][:feels_like]).to be_an(Float)
         expect(denver[:main][:humidity]).to be_an(Integer)
-        expect(denver[:visability]).to be_an(Integer)
+        expect(denver[:visibility]).to be_an(Integer)
         expect(denver[:dt]).to be_an(Integer)
-        expect(denver[:weather][:description]).to be_a(String)
+        expect(denver[:weather][0][:description]).to be_a(String)
       end
     end
-
-
-
   end
 end
