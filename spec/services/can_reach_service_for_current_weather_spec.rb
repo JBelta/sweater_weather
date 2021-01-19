@@ -4,7 +4,7 @@ describe OpenWeatherService do
   context 'instance methods' do
     context '#current_weather' do
       it 'returns current weather of selected city, state' do
-        denver = OpenWeatherService.current_weather('Denver', 'CO')
+        denver = OpenWeatherService.current_weather('Denver')
 
         expect(denver).to be_a(Hash)
         expect(denver[:dt]).to be_an(Integer)
