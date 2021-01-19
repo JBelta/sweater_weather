@@ -4,7 +4,6 @@ class GeocodingService
     response = conn.get("/geocoding/v1/address?location=#{city},#{state}")
     json = JSON.parse(response.body, symbolize_names: true)
 
-    #json[:results][0][:locations][0]
   end
 
   def self.conn
