@@ -3,8 +3,9 @@ require 'rails_helper'
 describe OpenWeatherService do
   context 'instance methods' do
     context '#current_weather' do
-      it 'returns current weather of selected city, state' do
-        denver = OpenWeatherService.current_weather('Denver')
+      it 'can get the lattitude and longitude from the GeocodingFacade and returns the current weather' do
+        city = GeocodingFacade.city_location('Denver', 'CO')
+        denver = OpenWeatherService.current_weather(city.lat, city.lng)
 
         expect(denver).to be_a(Hash)
         expect(denver[:dt]).to be_an(Integer)
@@ -21,14 +22,13 @@ describe OpenWeatherService do
       end
     end
     it 'returns UV index of selected city' do
-      denver = OpenWeatherService.current_weather('Denver')
-      lat = denver[:coord][:lat]
-      lon = denver[:coord][:lon]
-      uvi = OpenWeatherService.ultraviolet(lat, lon)
+      city = GeocodingFacade.city_location('Denver', 'CO')
+
+      uvi = OpenWeatherService.ultraviolet(city.lat, city.lng)
 
       expect(uvi[:value]).to be_a(Float)
 
-      #ex =OpenWeatherFacade.weather_now('Denver')
+      OpenWeatherFacade.weather_now(city.lat, city.lng)
     end
   end
 end
