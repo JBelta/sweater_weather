@@ -10,7 +10,7 @@ describe OpenWeatherService do
         expect(denver[:dt]).to be_an(Integer)
         expect(denver[:sys][:sunrise]).to be_an(Integer)
         expect(denver[:sys][:sunset]).to be_an(Integer)
-        expect(denver[:main][:temp]).to be_an(Float)
+        expect(denver[:main][:temp]).to be_a(Float)
         expect(denver[:main][:feels_like]).to be_an(Float)
         expect(denver[:main][:humidity]).to be_an(Integer)
         expect(denver[:visibility]).to be_an(Integer)
@@ -19,6 +19,14 @@ describe OpenWeatherService do
         expect(denver[:coord][:lat]).to be_a(Float)
         expect(denver[:coord][:lon]).to be_a(Float)
       end
+    end
+    it 'returns UV index of selected city' do
+      denver = OpenWeatherService.current_weather('Denver')
+      lat = denver[:coord][:lat]
+      lon = denver[:coord][:lon]
+      uvi = OpenWeatherService.ultraviolet(lat, lon)
+
+      expect(uvi[:value]).to be_a(Float)
     end
   end
 end
