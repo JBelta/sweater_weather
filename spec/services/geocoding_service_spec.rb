@@ -17,4 +17,3 @@ describe GeocodingService do
     end
   end
 end
-#city = City.new(state_data)
