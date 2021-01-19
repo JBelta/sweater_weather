@@ -27,6 +27,8 @@ describe OpenWeatherService do
       uvi = OpenWeatherService.ultraviolet(lat, lon)
 
       expect(uvi[:value]).to be_a(Float)
+
+      #ex =OpenWeatherFacade.weather_now('Denver')
     end
   end
 end
