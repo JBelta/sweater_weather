@@ -1,5 +1,7 @@
 class CityCurrentWeather
   attr_reader :city,
+              :latitude,
+              :longitude,
               :date,
               :sunrise,
               :sunset,
@@ -13,15 +15,17 @@ class CityCurrentWeather
 
   def initialize(data)
     @city = data[:name]
+    @latitude = data[:coord][:lat]
+    @longitude = data[:coord][:lon]
     @date = Time.at(data[:dt])
-    @sunrise = data[:sys][:sunrise]
-    @sunset = data[:sys][:sunset]
+    @sunrise = Time.at(data[:sys][:sunrise])
+    @sunset = Time.at(data[:sys][:sunset])
     @temp = data[:main][:temp]
     @feels_like = data[:main][:feels_like]
-    @humidity = [:main][:humidity]
+    @humidity = data[:main][:humidity]
     @uvi = data[:value]
-    @visibility = [:visibility]
+    @visibility = data[:visibility]
     @conditions = data[:weather][0][:description]
-    @icon = ''
+    @icon = data[:icon]
   end
 end
