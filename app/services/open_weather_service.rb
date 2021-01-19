@@ -8,7 +8,7 @@ class OpenWeatherService
 
   def self.ultraviolet(lat, lon)
     response = conn.get("/data/2.5/uvi?lat=#{lat}&lon=#{lon}")
-    json = JSON.parse(response.body, symbolize_names: true)
+    json = JSON.parse(resposnse.body, symbolize_names: true)
   end
 
   def self.conn
