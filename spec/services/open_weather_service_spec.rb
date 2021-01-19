@@ -11,8 +11,16 @@ describe OpenWeatherService do
         expect(denver[:dt]).to be_an(Integer)
         expect(denver[:sys][:sunrise]).to be_an(Integer)
         expect(denver[:sys][:sunset]).to be_an(Integer)
-        expect(denver[:main][:temp]).to be_a(Float)
-        expect(denver[:main][:feels_like]).to be_an(Float)
+        if (denver[:main][:temp]).class != Integer
+          expect(denver[:main][:temp]).to be_a(Float)
+        else
+          expect(denver[:main][:temp]).not_to be_an(Integer)
+        end
+        if (denver[:main][:feels_like]).class != Integer
+          expect(denver[:main][:feels_like]).to be_a(Float)
+        else
+          expect(denver[:main][:feels_like]).to be_an(Integer)
+        end
         expect(denver[:main][:humidity]).to be_an(Integer)
         expect(denver[:visibility]).to be_an(Integer)
         expect(denver[:dt]).to be_an(Integer)
