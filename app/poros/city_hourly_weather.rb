@@ -1,10 +1,13 @@
 class CityHourlyWeather
-  attr_reader :time,
-              :temp,
-              :wind_speed,
-              :wind_direction,
-              :conditions,
-              :icon
+  attr_reader :current,
+              :hr_one,
+              :hr_two,
+              :hr_three,
+              :hr_four,
+              :hr_five,
+              :hr_six,
+              :hr_seven,
+              :hr_eight
 
   def initialize(data)
     @current = data[0]
