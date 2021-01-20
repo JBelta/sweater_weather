@@ -8,12 +8,19 @@ describe ZomatoService do
       food_1 = 'korean'
       food_2 = 'italian'
 
-      outcome_denver = ZomatoService.search_by_city(food_1, denver.lat, denver.lng)
-      outcome_pueblo = ZomatoService.search_by_city(food_2, pueblo.lat, pueblo.lng)
+      outcome_denver = ZomatoService.search_by_city(food_1, denver.lat, denver.lng)[:restaurants]
+      outcome_pueblo = ZomatoService.search_by_city(food_2, pueblo.lat, pueblo.lng)[:restaurants]
 binding.pry
     #denver
-      expect(outcome_denver).to be_a(Hash)
-      expect(outcome_denver[:name]).to eq('Denver, CO')
+      expect(outcome_denver).to be_an(Array)
+      expect(outcome_denver.first).to be_an(Hash)
+      expect(outcome_denver[0][:name]).to be_a(String)
+    #pueblo
+      expect(outcome_pueblo).to be_an(Array)
+      expect(outcome_pueblo.first).to be_an(Hash)
+      expect(outcome_pueblo[0][:name]).to be_a(String)
+    #different data
+      expect(outcome_denver[0][:name]).to not_eq(expect(outcome_pueblo[0][:name]))
     end
   end
 end
