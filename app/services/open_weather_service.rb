@@ -2,7 +2,6 @@ class OpenWeatherService
 
 
   def self.current_weather(lat, lon)
-    binding.pry
     response = conn.get("/data/2.5/weather?lat=#{lat}&lon=#{lon}")
     JSON.parse(response.body, symbolize_names: true)
   end
@@ -12,8 +11,13 @@ class OpenWeatherService
     JSON.parse(response.body, symbolize_names: true)
   end
 
-  def self.daily_hourly(lat, lon)
-    response = conn.get("/data/2.5/forecast?lat=#{lat}&lon=#{lon}")
+  def self.hourly(lat, lon)
+    response = conn.get("/data/2.5/onecall?lat=#{lat}&lon=#{lon}&exclude=daily&units=imperial")
+    JSON.parse(response.body, symbolize_names: true)
+  end
+
+  def self.daily(lat, lon)
+    response = conn.get("/data/2.5/onecall?lat=#{lat}&lon=#{lon}&exclude=hourly&units=imperial")
     JSON.parse(response.body, symbolize_names: true)
   end
 
