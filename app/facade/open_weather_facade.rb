@@ -3,7 +3,7 @@ class OpenWeatherFacade
   def self.weather_now(lat, lon)
     state_info = OpenWeatherService.current_weather(lat, lon)
     uv_info =
-    OpenWeatherService.ultraviolet(lat, lon)
+    OpenWeatherService.ultaraviolet(lat, lon)
     data = state_info.merge(uv_info)
     CityCurrentWeather.new(data)
   end
