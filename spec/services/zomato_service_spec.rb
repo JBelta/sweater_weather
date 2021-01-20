@@ -8,10 +8,10 @@ describe ZomatoService do
 
       outcome_denver = ZomatoService.search_by_city(denver.lat, denver.lng)[:location_suggestions].first
       outcome_pueblo = ZomatoService.search_by_city(pueblo.lat, pueblo.lng)[:location_suggestions].first
-binding.pry
+
     #denver
       expect(outcome_denver).to be_a(Hash)
-      expect(outcome_denver)
-    end 
+      expect(outcome_denver[:name]).to eq('Denver, CO')
+    end
   end
 end
