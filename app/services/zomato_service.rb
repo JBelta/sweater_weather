@@ -5,7 +5,7 @@ class ZomatoService
   end
   def self.conn
     Faraday.new(url: 'https://https://developers.zomato.com') do |faraday|
-      faraday.headers[user-key] = ENV['ZOMATO_KEY']
+      faraday.headers['user-key'] = ENV['ZOMATO_KEY']
     end
   end
 end
