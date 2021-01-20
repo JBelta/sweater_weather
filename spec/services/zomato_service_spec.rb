@@ -5,9 +5,11 @@ describe ZomatoService do
     it 'can find resteraunts with lattitude and longitude' do
       denver = GeocodingFacade.city_location('denver', 'co')
       pueblo = GeocodingFacade.city_location('pueblo', 'co')
+      food_1 = 'korean'
+      food_2 = 'italian'
 
-      outcome_denver = ZomatoService.search_by_city('korean', denver.lat, denver.lng)
-      outcome_pueblo = ZomatoService.search_by_city('italian', pueblo.lat, pueblo.lng)
+      outcome_denver = ZomatoService.search_by_city(food_1, denver.lat, denver.lng)
+      outcome_pueblo = ZomatoService.search_by_city(food_2, pueblo.lat, pueblo.lng)
 binding.pry
     #denver
       expect(outcome_denver).to be_a(Hash)
