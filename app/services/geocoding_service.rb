@@ -8,7 +8,7 @@ class GeocodingService
 
   def self.conn
     Faraday.new(url: 'http://www.mapquestapi.com/') do |faraday|
-      faraday.params['key'] = ENV['GEOCODING_API_KEY']
+      faraday.params['key'] = ENV['MAPQUEST_API_KEY']
       faraday.adapter Faraday.default_adapter
     end
   end
