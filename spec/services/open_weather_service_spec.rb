@@ -29,22 +29,38 @@ describe OpenWeatherService do
         expect(denver[:coord][:lon]).to be_a(Float)
       end
     end
-    it 'returns UV index of selected city' do
-      city = GeocodingFacade.city_location('Denver', 'CO')
 
-      uvi = OpenWeatherService.ultraviolet(city.lat, city.lng)
+    context '#ultraviolet'
+      it 'returns UV index of selected city' do
+        city = GeocodingFacade.city_location('Denver', 'CO')
 
-      expect(uvi[:value]).to be_a(Float)
+        uvi = OpenWeatherService.ultraviolet(city.lat, city.lng)
+
+        expect(uvi[:value]).to be_a(Float)
+      end
     end
-  end
 
-  context '#daily_hourly' do
-    it 'can return the hourly weather with cities lattitude and longitude' do
-      city = GeocodingFacade.city_location('Denver', 'CO')
-      denver = OpenWeatherService.hourly_weather(city.lat, city.lng)
+    context '#hourly' do
+      it 'can return the hourly weather with cities lattitude and longitude' do
+        city = GeocodingFacade.city_location('Denver', 'CO')
+        denver = OpenWeatherService.hourly(city.lat, city.lng)
 
-      expect(denver).to be_a(Hash)
+        expect(denver).to be_a(Hash)
 
+        now = denver[:current]
+        eight_hr = denver[:hourly].take(8)
+        outcome = eight_hr.insert(0, now)
+        
+        expect(outcome.count).to be(9)
+        if outcome[0][:temp].class != Float
+          expect(outcome[0][:temp]).to be_an(Integer)
+        end
+        if outcome[0][:wind_speed].class != Float
+          expect(outcome[0][:wind_speed]).to be_a(Integer)
+        end
+        expect(outcome[0][:wind_deg]).to be_an(Integer)
+        expect(outcome[0][:weather][0][:description]).to be_a(String)
+        expect(outcome[0][:weather][0][:icon]).to be_a(String)
     end
   end
 end
