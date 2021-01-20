@@ -15,5 +15,17 @@ describe GeocodingService do
         expect(hash[:latLng][:lng]).to eq(-104.984853)
       end
     end
+    context '#distance' do
+      it 'returns data of distance between two points' do
+        den = "Denver, CO"
+        pbl = "Pueblo, CO"
+
+        data = GeocodingService.distance(den, pbl)
+        binding.pry
+        if data[:route][:distance].class != Float
+          expect(data[:route][:distance]).to be_an(Integer)
+
+      end
+    end
   end
 end
