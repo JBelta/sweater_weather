@@ -7,7 +7,7 @@ class GeocodingService
   end
 
   def self.distance(from, to)
-    response = conn.get('http://www.mapquestapi.com/directions/v2/route')
+    response = conn.get("http://www.mapquestapi.com/directions/v2/route?unit=m&from=#{from}&to=#{to}")
     JSON.parse(response.body, symbolize_names: true)
   end
 
