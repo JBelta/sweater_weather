@@ -24,7 +24,7 @@ describe GeocodingService do
         binding.pry
         if data[:route][:distance].class != Float
           expect(data[:route][:distance]).to be_an(Integer)
-
+        end
       end
     end
   end
