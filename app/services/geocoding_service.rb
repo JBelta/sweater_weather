@@ -1,5 +1,5 @@
 class GeocodingService
-
+#change to mapquest service?
   def self.location(city, state)
     response = conn.get("/geocoding/v1/address?location=#{city},#{state}")
     json = JSON.parse(response.body, symbolize_names: true)
