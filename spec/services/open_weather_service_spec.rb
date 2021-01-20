@@ -50,7 +50,7 @@ describe OpenWeatherService do
         now = denver[:current]
         eight_hr = denver[:hourly].take(8)
         outcome = eight_hr.insert(0, now)
-        
+
         expect(outcome.count).to be(9)
         if outcome[0][:temp].class != Float
           expect(outcome[0][:temp]).to be_an(Integer)
@@ -61,6 +61,32 @@ describe OpenWeatherService do
         expect(outcome[0][:wind_deg]).to be_an(Integer)
         expect(outcome[0][:weather][0][:description]).to be_a(String)
         expect(outcome[0][:weather][0][:icon]).to be_a(String)
+      end
+    end
+
+    context '#daily' do
+      it 'can return an 8 day forcast with cities lattitude and longitude' do
+        city = GeocodingFacade.city_location('Denver', 'CO')
+        denver = OpenWeatherService.daily(city.lat, city.lng)
+
+        expect(denver).to be_a(Hash)
+
+        now = denver[:current]
+        five_day = denver[:daily].take(5)
+        outcome = five_day.insert(0, now)
+
+        expect(outcome.count).to be(6)
+        expect(outcome[0][:dt]).to be_a(Integer)
+        expect(outcome[0][:sunrise]).to be_a(Integer)
+        expect(outcome[0][:sunset]).to be_a(Integer)
+        if outcome[1][:temp][:max].class != Float
+          expect(outcome[1][:temp][:max]).to be_an(Integer)
+        end
+        if outcome[1][:temp][:min].class != Float
+          expect(outcome[1][:temps][:min]).to be_a(Integer)
+        end
+        expect(outcome[1][:weather][0][:description]).to be_a(String)
+        expect(outcome[1][:weather][0][:icon]).to be_a(String)
     end
   end
 end
