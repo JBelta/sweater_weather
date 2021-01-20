@@ -1,2 +1,3 @@
 class CityDailyWeather
-end 
+  attr_reader
+end
