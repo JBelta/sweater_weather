@@ -6,6 +6,11 @@ class GeocodingService
 
   end
 
+  def self.distance(from, to)
+    response = conn.get('http://www.mapquestapi.com/directions/v2/route')
+    JSON.parse(response.body, symbolize_names: true)
+  end
+
   def self.conn
     Faraday.new(url: 'http://www.mapquestapi.com/') do |faraday|
       faraday.params['key'] = ENV['MAPQUEST_API_KEY']
