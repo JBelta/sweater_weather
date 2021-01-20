@@ -1,7 +1,7 @@
 class ZomatoService
 
-  def self.search_by_city(lat, lon)
-    response = conn.get("/api/v2.1/cities?lat=#{lat}&lon=#{lon}")
+  def self.search_by_city(food, lat, lon)
+    response = conn.get("/api/v2.1/search?q=#{food}lat=#{lat}&lon=#{lon}")
     JSON.parse(response.body, symbolize_names: true)
   end
   def self.conn
